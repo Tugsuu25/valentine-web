@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? ❤️</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+        h1 {
+            font-size: 3rem;
+            color: red;
+            animation: float 2s infinite ease-in-out;
+        }
+        p {
+            font-size: 1.5rem;
+            color: darkred;
+            max-width: 600px;
+            margin: 20px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .yes:hover {
+            background-color: darkred;
+        }
+        .no {
+            background-color: white;
+            color: red;
+            position: absolute;
+        }
+        .no:hover {
+            transform: translateX(100px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine? ❤️</h1>
+    <p>You are the most incredible human being I have ever met. Every moment with you feels like a dream, and I want to spend my whole life by your side. Your smile brightens my darkest days, and your laughter is the sweetest sound I know. I am beyond grateful to have you in my life. ❤️</p>
+    <div class="buttons">
+        <button class="yes" onclick="alert('Yay! Love you! ❤️')">YES</button>
+        <button class="no" onmouseover="this.style.left=Math.random()*300+'px'">NO</button>
+    </div>
+</body>
+</html>
