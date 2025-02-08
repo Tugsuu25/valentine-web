@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,28 +9,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             flex-direction: column;
             background-color: pink;
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
+            overflow: hidden;
         }
         h1 {
             font-size: 3rem;
             color: red;
-            animation: float 2s infinite ease-in-out;
-        }
-        p {
-            font-size: 1.5rem;
-            color: darkred;
-            max-width: 600px;
-            margin: 20px;
-        }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
+            position: relative;
+            animation: bounce 1s infinite alternate;
         }
         .buttons {
             margin-top: 20px;
@@ -43,6 +33,7 @@
             border: none;
             cursor: pointer;
             border-radius: 10px;
+            position: absolute;
         }
         .yes {
             background-color: red;
@@ -54,19 +45,60 @@
         .no {
             background-color: white;
             color: red;
-            position: absolute;
+            border: 2px solid red;
+            transition: 0.2s;
         }
         .no:hover {
-            transform: translateX(100px);
+            background-color: lightgray;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2rem;
+            animation: float 4s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-200px); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <h1>Will you be my Valentine? ❤️</h1>
-    <p>You are the most incredible human being I have ever met. Every moment with you feels like a dream, and I want to spend my whole life by your side. Your smile brightens my darkest days, and your laughter is the sweetest sound I know. I am beyond grateful to have you in my life. ❤️</p>
     <div class="buttons">
         <button class="yes" onclick="alert('Yay! Love you! ❤️')">YES</button>
-        <button class="no" onmouseover="this.style.left=Math.random()*300+'px'">NO</button>
+        <button class="no" id="noBtn">NO</button>
     </div>
+
+    <script>
+        const noBtn = document.getElementById("noBtn");
+        noBtn.addEventListener("mouseover", () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        });
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = window.innerHeight + "px";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
 </body>
 </html>
