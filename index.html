@@ -1,4 +1,4 @@
-      <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -78,7 +78,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Will you be my valentine? 💖</h1>
+        <h1>Will you be my girlfriend? 💖</h1>
         <img class="gif" id="gifDisplay" src="https://media.giphy.com/media/jUwpNzg9IcyrK/giphy.gif" alt="Cute GIF">
         <div class="buttons">
             <button class="btn yes" onclick="sayYes()">YES</button>
@@ -104,9 +104,11 @@
         let noIndex = 0;
 
         function sayYes() {
-            document.body.innerHTML = "<h1>YAY! I love you! 💖</h1><img class='gif' src='https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif' alt='Happy GIF'>";
+            document.querySelector('.container').innerHTML = "<h1>YAY! I love you! 💖</h1><img class='gif' src='https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif' alt='Happy GIF'>";
             setTimeout(() => {
-                document.getElementById('letter').style.display = 'block';
+    let letter = document.getElementById('letter');
+    if (letter) letter.style.display = 'block';
+}, 1000);
             }, 1000);
         }
 
@@ -136,7 +138,8 @@
 
         function showFireworks() {
             document.getElementById('letter').style.display = 'none';
-            document.getElementById('fireworks').style.display = 'block';
+            let fireworks = document.getElementById('fireworks');
+if (fireworks) fireworks.style.display = 'block';
         }
     </script>
 </body>
