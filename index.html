@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -104,12 +104,14 @@
         let noIndex = 0;
 
         function sayYes() {
-            document.querySelector('.container').innerHTML = "<h1>YAY! I love you! 💖</h1><img class='gif' src='https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif' alt='Happy GIF'>";
-            setTimeout(() => {
-    let letter = document.getElementById('letter');
-    if (letter) letter.style.display = 'block';
-}, 1000);
-            }, 1000);
+            document.querySelector('.container').innerHTML = `<h1>YAY! I love you! 💖</h1>
+                <img class='gif' src='https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif' alt='Happy GIF'>
+                <button class='btn' onclick='showLetter()'>Open Love Letter</button>`;
+        }
+
+        function showLetter() {
+            let letter = document.getElementById('letter');
+            if (letter) letter.style.display = 'block';
         }
 
         function changeNo() {
@@ -137,9 +139,10 @@
         }
 
         function showFireworks() {
-            document.getElementById('letter').style.display = 'none';
+            let letter = document.getElementById('letter');
+            if (letter) letter.style.display = 'none';
             let fireworks = document.getElementById('fireworks');
-if (fireworks) fireworks.style.display = 'block';
+            if (fireworks) fireworks.style.display = 'block';
         }
     </script>
 </body>
