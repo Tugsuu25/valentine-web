@@ -3,102 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine? ❤️</title>
+    <title>Be My Girlfriend?</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            background-color: pink;
-            font-family: Arial, sans-serif;
             text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6f2;
             overflow: hidden;
         }
-        h1 {
-            font-size: 3rem;
-            color: red;
-            position: relative;
-            animation: bounce 1s infinite alternate;
+        .container {
+            margin-top: 50px;
+        }
+        .gif {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
         }
         .buttons {
-            margin-top: 20px;
             position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
-        button {
-            font-size: 1.5rem;
+        .btn {
+            font-size: 20px;
             padding: 10px 20px;
-            margin: 10px;
             border: none;
             cursor: pointer;
+            transition: all 0.3s ease;
             border-radius: 10px;
-            position: absolute;
         }
         .yes {
-            background-color: red;
+            background-color: #ff4d4d;
             color: white;
         }
-        .yes:hover {
-            background-color: darkred;
-        }
         .no {
-            background-color: white;
-            color: red;
-            border: 2px solid red;
-            transition: 0.2s;
+            background-color: #fff;
+            color: #ff4d4d;
+            border: 2px solid #ff4d4d;
         }
-        .no:hover {
-            background-color: lightgray;
-        }
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
-        }
-        .heart {
-            position: absolute;
-            color: red;
-            font-size: 2rem;
-            animation: float 4s infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0); opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(-200px); opacity: 0; }
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif') center/cover no-repeat;
+            display: none;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
-    <h1>Will you be my Valentine? ❤️</h1>
-    <div class="buttons">
-        <button class="yes" onclick="alert('Yay! Love you! ❤️')">YES</button>
-        <button class="no" id="noBtn">NO</button>
+    <div class="container">
+        <h1>Will you be my girlfriend? 💖</h1>
+        <img class="gif" src="https://media.giphy.com/media/jUwpNzg9IcyrK/giphy.gif" alt="Cute GIF">
+        <div class="buttons">
+            <button class="btn yes" onclick="sayYes()">YES</button>
+            <button class="btn no" onclick="changeNo()">No</button>
+        </div>
     </div>
-
+    <div class="fireworks" id="fireworks"></div>
     <script>
-        const noBtn = document.getElementById("noBtn");
-        noBtn.addEventListener("mouseover", () => {
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 100);
-            noBtn.style.position = "absolute";
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
-        });
+        let yesSize = 20;
+        let noTexts = ["Please?", "Are you sure?", "Think again!", "Pretty please!", "Don't break my heart!", "Last chance!"];
+        let noIndex = 0;
 
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.innerHTML = "❤️";
-            heart.classList.add("heart");
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.top = window.innerHeight + "px";
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
+        function sayYes() {
+            document.body.innerHTML = "<h1>YAY! I love you! 💖</h1><img class='gif' src='https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif' alt='Happy GIF'>";
+            document.getElementById('fireworks').style.display = 'block';
         }
 
-        setInterval(createHeart, 500);
+        function changeNo() {
+            let noButton = document.querySelector(".no");
+            let yesButton = document.querySelector(".yes");
+            
+            if (noIndex < noTexts.length) {
+                noButton.innerText = noTexts[noIndex];
+                noIndex++;
+            } else {
+                noButton.innerText = "You can't say no!";
+            }
+            
+            yesSize += 20;
+            yesButton.style.fontSize = yesSize + "px";
+            if (yesSize >= 200) {
+                yesButton.style.position = "fixed";
+                yesButton.style.top = "50%";
+                yesButton.style.left = "50%";
+                yesButton.style.transform = "translate(-50%, -50%)";
+                yesButton.style.zIndex = "999";
+            }
+        }
     </script>
 </body>
 </html>
