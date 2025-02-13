@@ -1,42 +1,111 @@
-let gifs = [
-    "https://media.giphy.com/media/BPPvbcyMr009gMdDIt/giphy.gif",
-    "https://media.giphy.com/media/tpVKvAabWt3G5csMkT/giphy.gif",
-    "https://media.giphy.com/media/3CCXHZWV6F6O9VQ7FL/giphy.gif",
-    "https://media.giphy.com/media/BPPvbcyMr009gMdDIt/giphy.gif",
-    "https://media.giphy.com/media/7vDoUoDZHoUQxMPkd7/giphy.gif"
-];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💖</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .gif-container img {
+            width: 250px;
+            height: auto;
+            margin-top: 20px;
+        }
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+        }
+        #yes {
+            background-color: lightgreen;
+        }
+        #no {
+            background-color: lightcoral;
+        }
+        #letter, #fireworks {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        #fireworks {
+            background: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my Valentine? 💕</h1>
+        <div class="gif-container" id="gif-container">
+            <img src="https://media.giphy.com/media/BPPvbcyMr009gMdDIt/giphy.gif" alt="Cute GIF" class="gif">
+        </div>
+        <button id="yes" class="btn" onclick="sayYes()">Yes</button>
+        <button id="no" class="btn" onclick="changeNo()">No</button>
+    </div>
+    <div id="letter">
+        <h2>Dear Love, 💌</h2>
+        <p>You mean the world to me. I can't imagine my life without you. Be my Valentine forever? 💖</p>
+        <button class="btn" onclick="showFireworks()">Open</button>
+    </div>
+    <div id="fireworks">
+        <h1>🎆💖 Happy Valentine's Day! 💖🎆</h1>
+    </div>
+    
+    <script>
+        let gifs = [
+            "https://media.giphy.com/media/BPPvbcyMr009gMdDIt/giphy.gif",
+            "https://media.giphy.com/media/tpVKvAabWt3G5csMkT/giphy.gif",
+            "https://media.giphy.com/media/3CCXHZWV6F6O9VQ7FL/giphy.gif",
+            "https://media.giphy.com/media/BPPvbcyMr009gMdDIt/giphy.gif",
+            "https://media.giphy.com/media/7vDoUoDZHoUQxMPkd7/giphy.gif"
+        ];
 
-// Your existing code logic
+        function changeNo() {
+            let noButton = document.getElementById("no");
+            let yesButton = document.getElementById("yes");
+            let gifContainer = document.getElementById("gif-container");
 
-function changeNo() {
-    let noButton = document.getElementById("no");
-    let yesButton = document.getElementById("yes");
-    let gifContainer = document.getElementById("gif-container");
+            let messages = ["Please? 💖", "Are you sure? 🥺", "One more chance! 😘", "Pretty please? 🌹", "Be my Valentine! 💝"];
+            let currentIndex = messages.indexOf(noButton.innerText);
+            let nextIndex = (currentIndex + 1) % messages.length;
+            noButton.innerText = messages[nextIndex];
+            yesButton.style.transform = `scale(${1 + nextIndex * 0.2})`;
 
-    let messages = ["Please? 💖", "Are you sure? 🥺", "One more chance! 😘", "Pretty please? 🌹", "Be my Valentine! 💝"];
-    let currentIndex = messages.indexOf(noButton.innerText);
-    let nextIndex = (currentIndex + 1) % messages.length;
-    noButton.innerText = messages[nextIndex];
-    yesButton.style.transform = `scale(${1 + nextIndex * 0.2})`;
+            let gifIndex = Math.floor(Math.random() * gifs.length);
+            gifContainer.innerHTML = `<img src="${gifs[gifIndex]}" alt="Cute GIF" class="gif">`;
+        }
 
-    let gifIndex = Math.floor(Math.random() * gifs.length);
-    gifContainer.innerHTML = `<img src="${gifs[gifIndex]}" alt="Cute GIF" class="gif">`;
-}
+        function sayYes() {
+            document.querySelector(".container").innerHTML = `
+                <h1>YAY! I love you! 💖</h1>
+                <img class='gif' src='https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif' alt='Happy GIF'>
+                <button class='btn' onclick='showLetter()'>Open Love Letter</button>
+            `;
+        }
 
-function sayYes() {
-    document.querySelector(".container").innerHTML = `<h1>YAY! I love you! 💖</h1>
-        <img class='gif' src='https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif' alt='Happy GIF'>
-        <button class='btn' onclick='showLetter()'>Open Love Letter</button>`;
-}
+        function showLetter() {
+            document.getElementById('letter').style.display = 'block';
+        }
 
-function showLetter() {
-    let letter = document.getElementById('letter');
-    if (letter) letter.style.display = 'block';
-}
-
-function showFireworks() {
-    let letter = document.getElementById('letter');
-    if (letter) letter.style.display = 'none';
-    let fireworks = document.getElementById('fireworks');
-    if (fireworks) fireworks.style.display = 'block';
-}
+        function showFireworks() {
+            document.getElementById('letter').style.display = 'none';
+            document.getElementById('fireworks').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
